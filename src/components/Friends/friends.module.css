@@ -1,0 +1,12 @@
+.friend {
+  display: grid;
+  grid-template-columns: 1fr 1fr 18fr;
+  padding: 2px;
+}
+
+
+.friend img {
+  width: 50px;
+  height: auto;
+  border-radius: 5px;
+}

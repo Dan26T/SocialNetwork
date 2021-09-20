@@ -1,0 +1,12 @@
+.App {
+  display: grid;
+  grid-template-columns:1fr 9fr;
+  margin: 0.5%;
+  grid-gap:0.5em
+}
+.App-content{
+  padding: 1em;
+  grid-row: 2/3;
+  grid-column: 2/9;
+  background-color: white;
+  border: 3px solid silver;}

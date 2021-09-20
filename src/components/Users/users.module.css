@@ -1,0 +1,14 @@
+.img {
+  width: 50px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.active {
+  font-weight: bold;
+  color: #cb0a0a;
+}
+
+.pages span {
+  margin: 2px;
+}

@@ -1,0 +1,26 @@
+.item{
+  display: grid;
+  grid-template-columns: 1fr 15fr;
+  color: red;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 3px solid silver;
+  width: 70%;
+  border-radius: 10px;
+}
+.image {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.message{
+  background-color: #778899;
+  padding: 5px;
+  padding-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+div span {
+  margin-top: 5px;
+}
