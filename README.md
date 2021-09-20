@@ -1,4 +1,4 @@
-# For testing React App---API
+# For testing React App without Redirect to LoginPage
 
 Login: danilfrsenov@gmail.com
 Pass: ReactRedux
