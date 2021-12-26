@@ -46,7 +46,7 @@ class App extends React.PureComponent {
     }
 }
 
-
+//help
 const mapStateToProps = (state) => ({
     initialazed: state.app.initialazed
 })
