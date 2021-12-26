@@ -1,4 +1,4 @@
-import {profileApi, userApi} from "../api/api";
+import {authApi, profileApi, userApi} from "../api/api";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -54,27 +54,24 @@ export const setUserSmallPhoto = (userSmallPhoto) => ({type: SET_USER_SMALL_PHOT
 export const setStatus = (status) => ({type: SET_STATUS, status})
 
 export const getUserProfile = (userId) => {
-    return (dispatch) => {
-        userApi.setUserProfile(userId).then(response => {
+    return async (dispatch) => {
+        let response = await userApi.setUserProfile(userId)
             dispatch(setUserProfile(response))
             dispatch(setUserSmallPhoto(response.photos.small))
-        })
     }
 }
 export const getStatus = (userId) => {
-    return (dispatch) => {
-        profileApi.getStatus(userId).then(response => {
+    return async (dispatch) => {
+        let response = await  profileApi.getStatus(userId)
             dispatch(setStatus(response.data))
-        })
     }
 }
 export const updateStatus = (status) => {
-    return (dispatch) => {
-        profileApi.updateStatus(status).then(response => {
+    return async (dispatch) => {
+        let response = await  profileApi.updateStatus(status)
             if (response.data.resultCode===0) {
                 dispatch(setStatus(status))
             }
-        })
     }
 }
 

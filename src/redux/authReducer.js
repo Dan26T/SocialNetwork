@@ -37,17 +37,16 @@ export const setUserData = (userId, email, login, isAuth) => ({
 })
 export const setCapcha = (capchaId) => ({type: SET_CAPCHA, capchaId})
 
-export const getAuthData = () => (dispatch) => {
-        return authApi.me().then(response => {
+export const getAuthData = () => async (dispatch) => {
+    let response = await  authApi.me()
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data;
                 dispatch(setUserData(id, email, login, true));
             }
-        })
     }
 
-export const logIn = (email, password, rememberMe) => (dispatch) => {
-        authApi.login(email, password, rememberMe).then(response => {
+export const logIn = (email, password, rememberMe) => async (dispatch) => {
+    let response = await  authApi.login(email, password, rememberMe)
             if (response.data.resultCode === 0) {
                 dispatch(getAuthData());
             } else if (response.data.resultCode === 10) {
@@ -60,15 +59,13 @@ export const logIn = (email, password, rememberMe) => (dispatch) => {
                 let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
                 dispatch(stopSubmit('loginForm', {_error: message}));
             }
-        })
     }
 export const logout = () => {
-    return (dispatch) => {
-        authApi.logout().then(response => {
+    return async (dispatch) => {
+        let response = await authApi.logout()
             if (response.data.resultCode === 0) {
                 dispatch(setUserData(null, null, null, false));
             }
-        })
     }
 }
 

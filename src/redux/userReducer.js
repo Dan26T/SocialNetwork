@@ -1,4 +1,4 @@
-import {followApi, userApi} from "../api/api";
+import {authApi, followApi, userApi} from "../api/api";
 
 const SHOW_MORE = 'SHOW-MORE'
 const FOLLOW = 'FOLLOW'
@@ -83,36 +83,33 @@ export const followingProgress = (isFetching, userId) => ({type: TOGGLE_FOLLOWIN
 
 
 export const getUsers =(activePage, pageSize ) =>{
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(showLoader(true))
         dispatch(setActivePage(activePage))
-        userApi.getUsers(activePage, pageSize).then(response => {
+        let response = await userApi.getUsers(activePage, pageSize)
             dispatch(showLoader(false))
             dispatch(setUsers(response.items))
             dispatch(setTotalCount(response.totalCount))
-        })
     }
 }
 export const follow =(userId ) =>{
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(followingProgress(true, userId))
-        followApi.postFollow(userId).then(response => {
+        let response = await followApi.postFollow(userId)
             if (response.data.resultCode === 0) {
                 dispatch(followSuccess(userId))
             }
             dispatch(followingProgress(false, userId))
-        });
     }
 }
 export const unfollow =(userId ) =>{
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(followingProgress(true, userId))
-        followApi.deleteFollow(userId).then(response => {
+        let response = await  followApi.deleteFollow(userId)
             if (response.data.resultCode === 0) {
                 dispatch(unfollowSuccess(userId))
             }
             dispatch(followingProgress(false, userId))
-        });
     }
 }
 
